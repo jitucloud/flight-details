@@ -15,12 +15,10 @@ Request Json:
 	"Passenger": [{
 			"FirstName": "test 1",
 			"LastName": "test 1 last"
-
 		},
 		{
 			"FirstName": "test 2",
 			"LastName": "test 2 last"
-
 		}
 	]
 }

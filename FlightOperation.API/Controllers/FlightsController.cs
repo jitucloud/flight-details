@@ -50,7 +50,7 @@ namespace FlightOperation.API.Controllers
 
         public async Task<IHttpActionResult> GetAllFlightListForToday()
         {
-            var flightList = await flightManager.GetFlightList(DateTime.UtcNow);
+            var flightList = await flightManager.GetFlightList(DateTime.Now);
             if (flightList != null)
                 return Ok(flightList);
             else
