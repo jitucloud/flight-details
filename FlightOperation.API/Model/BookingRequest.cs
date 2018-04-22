@@ -5,7 +5,7 @@ using System.Web;
 
 namespace FlightOperation.API.Model
 {
-    public class BookingRequestDeatils
+    public class CreateBookingRequestDeatils
     {
         public FlightDetailRequest FlightDetails { get; set; }
         public List<Passenger> Passenger { get; set; }
@@ -23,10 +23,10 @@ namespace FlightOperation.API.Model
 
     public class BookingRequestWrapper
     {
-        public List<BookingRequestDeatils> bookingDetails { get; set; }
+        public List<CreateBookingRequestDeatils> bookingDetails { get; set; }
         public BookingRequestWrapper()
         {
-            bookingDetails = new List<BookingRequestDeatils>();
+            bookingDetails = new List<CreateBookingRequestDeatils>();
         }
     }
 }

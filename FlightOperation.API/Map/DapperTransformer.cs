@@ -13,6 +13,7 @@ namespace FlightOperation.API.Map
             FluentMapper.Initialize(config =>
             {
                 config.AddMap(new FlightDetailMap());
+                config.AddMap(new BookingMap());
 
             });
         }

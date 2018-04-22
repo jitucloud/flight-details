@@ -5,15 +5,15 @@ using System.Web;
 
 namespace FlightOperation.API.Model
 {
-    public class Booking
+    public class SearchBookingModel
     {
-        public int Id { get; set; }
-        public string PNR { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string BookingDate { get; set; }
-        public string DepartureCityName { get; set; }
-        public string ArrivalCityName { get; set; }
         public string FlightNumber { get; set; }
+        public string DepartureDate { get; set; }
+        public string DepartureCity { get; set; }
+        public string ArrivalCity { get; set; }
+        public string PNR { get; set; }
+
     }
 }

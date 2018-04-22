@@ -150,6 +150,7 @@
     <Compile Include="Manager\DbManager.cs" />
     <Compile Include="Manager\FlightManager.cs" />
     <Compile Include="Manager\PassengerManager.cs" />
+    <Compile Include="Map\BookingMap.cs" />
     <Compile Include="Map\DapperTransformer.cs" />
     <Compile Include="Map\FlightDetailMap.cs" />
     <Compile Include="Model\Booking.cs" />
@@ -158,6 +159,7 @@
     <Compile Include="Model\City.cs" />
     <Compile Include="Model\FlightDetail.cs" />
     <Compile Include="Model\Passenger.cs" />
+    <Compile Include="Model\SearchBookingModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServicesRegistry.cs" />
     <Compile Include="Startup.cs" />

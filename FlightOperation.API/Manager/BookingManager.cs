@@ -21,7 +21,7 @@ namespace FlightOperation.API.Manager
             this.flightManager = flightManager;
             this.passengerManager = passengerManager;
         }
-        public async Task<Tuple<HttpStatusCode, string>> MakeBooking(BookingRequestDeatils booking)
+        public async Task<Tuple<HttpStatusCode, string>> MakeBooking(CreateBookingRequestDeatils booking)
         {
             var flightDetails = await flightManager.GetFlightDetails(booking.FlightDetails);
             if (flightDetails != null && booking.Passenger != null && booking.Passenger.Count() > 0)
@@ -48,13 +48,6 @@ namespace FlightOperation.API.Manager
             }
             else
                 return new Tuple<HttpStatusCode, string>(HttpStatusCode.BadRequest, "flight details not valid");
-            // TODO: Get the flight ID and Capacity details
-            // TODO : Generate the PNR if capacity is okay
-            // Create an entry into BookingDetails table with PNR , flight number etc.
-            // Create an entry into passenger table and get the passenger id and insert into booking detail table against PNR
-
-
-            throw new NotImplementedException();
         }
 
         private async Task<bool> UpdateBooking(string pnr, FlightDetail flightDetails, int passengerCount)
@@ -85,9 +78,22 @@ namespace FlightOperation.API.Manager
             }
         }
 
-        public Task<List<Booking>> SearchBooking()
+        public async Task<List<Booking>> SearchBooking(SearchBookingModel search)
         {
-            throw new NotImplementedException();
+            var sql = @"SELECT * FROM [flightbooking].[dbo].[vwbookingdetails]
+                        WHERE pnr = @pnr or firstname= @fname or lastname = @lname";
+
+            using (var db = dbManager.GetOpenConnection())
+            {
+                var results = await db.QueryAsync<Booking>(new CommandDefinition(sql , new {
+                    pnr = search.PNR,
+                    fname = search.FirstName,
+                    lname = search.LastName
+                } ));
+                if (results != null && results.Count() > 0)
+                    return results.ToList();
+                else return null;
+            }
         }
     }
 }
