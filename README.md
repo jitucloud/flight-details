@@ -1,4 +1,6 @@
-Make A Booking:
+**Make A Booking**
+
+Request Json: 
 
 {
 	"FlightDetails": {
@@ -25,7 +27,10 @@ Make A Booking:
 
 }
 
-SEARCH : 
+**SEARCH** 
+
+Request Json: 
+
 {
 	"PNR":"1573346",
 	"FirstName":"test 1",

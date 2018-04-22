@@ -1,0 +1,1 @@
+I:\code\playground\dotnet\flight-details\FlightOperation.API.Tests\obj\Debug\FlightOperation.API.Tests.csprojResolveAssemblyReference.cache
