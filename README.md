@@ -1,4 +1,4 @@
-flight details
+Make A Booking:
 
 {
 	"FlightDetails": {
@@ -23,4 +23,11 @@ flight details
 		}
 	]
 
+}
+
+SEARCH : 
+{
+	"PNR":"1573346",
+	"FirstName":"test 1",
+	"LastName":"jitu"
 }
