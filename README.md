@@ -2,16 +2,15 @@
 
 Request Json: 
 
+
 {
 	"FlightDetails": {
-
 		"DepartureCityCode": "DXB",
 		"DepartureDate": "2018-04-24",
 		"DepartureTime": "10:00:00",
 		"ArrivalCityCode": "DEL",
 		"ArrivalDate": "2018-04-24",
 		"ArrivalTime": "14:00:00"
-
 	},
 	"Passenger": [{
 			"FirstName": "test 1",
@@ -24,8 +23,8 @@ Request Json:
 
 		}
 	]
-
 }
+
 
 **SEARCH** 
 

@@ -45,3 +45,4 @@ I:\code\playground\dotnet\flight-details\FlightOperation.API\bin\System.Web.Http
 I:\code\playground\dotnet\flight-details\FlightOperation.API\bin\System.Web.Http.WebHost.xml
 I:\code\playground\dotnet\flight-details\FlightOperation.API\obj\Debug\FlightOperation.API.dll
 I:\code\playground\dotnet\flight-details\FlightOperation.API\obj\Debug\FlightOperation.API.pdb
+I:\code\playground\dotnet\flight-details\FlightOperation.API\obj\Debug\FlightOperation.API.csprojResolveAssemblyReference.cache
