@@ -12,6 +12,7 @@ Request URL:  http://localhost:61429/api/flights/today
 
 Request URL:  http://localhost:61429/api/flights?date=4/24/2018
 
+Request URL:  http://localhost:61429/api/flights?date=4/26/2018
 
 **Check Availbility : HttpGet**
 
