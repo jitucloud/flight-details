@@ -1,6 +1,6 @@
 **Get All Flights: HttpGet**
 
-Request URL: http://localhost:61429/api/flights/today
+Request URL: http://localhost:61429/api/flights
 
 
 **Get Flights for Today: HttpGet**
