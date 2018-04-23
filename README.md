@@ -1,7 +1,21 @@
+**Get All Flights**
+http://localhost:61429/api/flights/today
+HTTP Verb: HttpGet
+
+**Get Flights for Today**
+Request URL:  http://localhost:61429/api/flights/today
+HTTP Verb: HttpGet
+
+
+**Get Flights for a given date**
+Request URL:  http://localhost:61429/api/flights?date=4/24/2018
+HTTP Verb: HttpGet
+
+
 **Make A Booking**
-
-Request Json: 
-
+Request URL: http://localhost:61429/api/bookings
+HTTP Verb: HttpPost
+Request Json:
 
 {
 	"FlightDetails": {
@@ -25,7 +39,8 @@ Request Json:
 
 
 **SEARCH** 
-
+Request URL: http://localhost:61429/api/bookings/search
+HTTP Verb:  HttpPost
 Request Json: 
 
 {

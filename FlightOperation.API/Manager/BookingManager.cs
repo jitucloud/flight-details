@@ -29,7 +29,7 @@ namespace FlightOperation.API.Manager
                 var passengerCount = booking.Passenger.Count();
                 if (flightDetails.Capacity > booking.Passenger.Count())
                 {
-                    var pnr = String.Format("{0:0000}", new Random().Next(000000, 999999));
+                    var pnr = String.Format("{0:000000}", new Random().Next(000000, 999999));
                     var status = await UpdateBooking(pnr, flightDetails, passengerCount);
                     if (status)
                     {
@@ -81,14 +81,21 @@ namespace FlightOperation.API.Manager
         public async Task<List<Booking>> SearchBooking(SearchBookingModel search)
         {
             var sql = @"SELECT * FROM [flightbooking].[dbo].[vwbookingdetails]
-                        WHERE pnr = @pnr or firstname= @fname or lastname = @lname";
+                        WHERE pnr = @pnr or firstname= @fname or lastname = @lname or flight_number = @fn
+                        or departure_city_code = @dcc or arrival_city_code = @acc
+                        or departure_city_name = @dcn or arrival_city_name = @acn";
 
             using (var db = dbManager.GetOpenConnection())
             {
                 var results = await db.QueryAsync<Booking>(new CommandDefinition(sql , new {
                     pnr = search.PNR,
                     fname = search.FirstName,
-                    lname = search.LastName
+                    lname = search.LastName,
+                    fn = search.FlightNumber,
+                    dcc = search.DepartureCityCode,
+                    acc = search.ArrivalCityCode,
+                    dcn = search.DepartureCityName,
+                    acn = search.ArrivalCityName
                 } ));
                 if (results != null && results.Count() > 0)
                     return results.ToList();

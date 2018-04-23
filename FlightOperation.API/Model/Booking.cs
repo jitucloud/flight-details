@@ -14,6 +14,8 @@ namespace FlightOperation.API.Model
         public string BookingDate { get; set; }
         public string DepartureCityName { get; set; }
         public string ArrivalCityName { get; set; }
+        public string DepartureCityCode { get; set; }
+        public string ArrivalCityCode { get; set; }
         public string FlightNumber { get; set; }
     }
 }

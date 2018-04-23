@@ -11,8 +11,10 @@ namespace FlightOperation.API.Model
         public string LastName { get; set; }
         public string FlightNumber { get; set; }
         public string DepartureDate { get; set; }
-        public string DepartureCity { get; set; }
-        public string ArrivalCity { get; set; }
+        public string DepartureCityCode { get; set; }
+        public string ArrivalCityCode { get; set; }
+        public string DepartureCityName { get; set; }
+        public string ArrivalCityName { get; set; }
         public string PNR { get; set; }
 
     }
