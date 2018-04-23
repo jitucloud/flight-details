@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace FlightOperation.API.Interface
 {
+    /// <summary>
+    /// IFlight manager interface
+    /// </summary>
     public interface IFlightManager
     {
         Task<List<FlightDetail>> GetAllFlightsList();

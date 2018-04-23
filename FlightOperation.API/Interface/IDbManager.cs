@@ -6,6 +6,9 @@ using System.Web;
 
 namespace FlightOperation.API.Interface
 {
+    /// <summary>
+    /// IDB manager
+    /// </summary>
     public interface IDbManager
     {
         /// <summary>

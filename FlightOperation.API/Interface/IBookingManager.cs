@@ -8,6 +8,9 @@ using System.Web;
 
 namespace FlightOperation.API.Interface
 {
+    /// <summary>
+    /// Booking manager interface
+    /// </summary>
     public interface IBookingManager
     {
         Task<List<Booking>> SearchBooking(SearchBookingModel search);

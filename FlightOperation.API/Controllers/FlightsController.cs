@@ -47,7 +47,6 @@ namespace FlightOperation.API.Controllers
         [Route("today")]
         [HttpGet]
         [ResponseType(typeof(List<FlightDetail>))]
-
         public async Task<IHttpActionResult> GetAllFlightListForToday()
         {
             var flightList = await flightManager.GetFlightList(DateTime.UtcNow);
@@ -65,7 +64,6 @@ namespace FlightOperation.API.Controllers
         [Route("")]
         [HttpGet]
         [ResponseType(typeof(List<FlightDetail>))]
-
         public async Task<IHttpActionResult> GetFlightList(DateTime date)
         {
 

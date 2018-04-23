@@ -12,10 +12,23 @@ namespace FlightOperation.API.Manager
     public class FlightManager : IFlightManager
     {
         private IDbManager dbManager;
+
+        /// <summary>
+        /// FlightManager ctor
+        /// </summary>
+        /// <param name="dbManager"></param>
         public FlightManager(IDbManager dbManager)
         {
             this.dbManager = dbManager;
         }
+
+        /// <summary>
+        /// Check Availbility Of Flight
+        /// </summary>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        /// <param name="passengerCount"></param>
+        /// <returns></returns>
         public async Task<List<FlightDetail>> CheckAvailbilityOfFlight(DateTime startDate, DateTime endDate, int passengerCount)
         {
             var sql = @"SELECT * FROM [flightbooking].[dbo].[vwflightdetails] 
@@ -30,6 +43,11 @@ namespace FlightOperation.API.Manager
                 else return null;
             }
         }
+
+        /// <summary>
+        /// Get All Flights List
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<FlightDetail>> GetAllFlightsList()
         {
             var sql = @"SELECT * FROM [flightbooking].[dbo].[vwflightdetails] WHERE departure_date >= CONVERT (date, GETUTCDATE())
@@ -43,6 +61,12 @@ namespace FlightOperation.API.Manager
                 else return null;
             }
         }
+
+        /// <summary>
+        /// Get Flight Details
+        /// </summary>
+        /// <param name="flightDetails"></param>
+        /// <returns></returns>
         public async Task<FlightDetail> GetFlightDetails(FlightDetailRequest flightDetails)
         {
             var sql = @"SELECT * FROM [flightbooking].[dbo].[vwflightdetails] 
@@ -63,6 +87,12 @@ namespace FlightOperation.API.Manager
                 return result;
             }
         }
+
+        /// <summary>
+        /// Get Flight List by date
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
         public async Task<List<FlightDetail>> GetFlightList(DateTime date)
         {
             var sql = @"SELECT * FROM [flightbooking].[dbo].[vwflightdetails] WHERE departure_date = CONVERT (date, @tdate)

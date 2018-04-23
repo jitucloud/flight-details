@@ -24,7 +24,7 @@ Request URL: http://localhost:61429/api/bookings
 
 HTTP Verb: HttpPost
 
-Request Json:
+Request Json 1:
 
 {
 	"FlightDetails": {
@@ -46,16 +46,50 @@ Request Json:
 	]
 }
 
+Request Json 2:
+
+{ "FlightDetails": { "DepartureCityCode": "MEL", "DepartureDate": "4/26/2018", "DepartureTime": "21:00:00", "ArrivalCityCode": "SYD", "ArrivalDate": "4/26/2018", "ArrivalTime": "23:00:00" }, "Passenger": [{ "FirstName": "test 1", "LastName": "test 1 last" }, { "FirstName": "test 2", "LastName": "test 2 last" } ] }
+
 
 **SEARCH: HttpPost** 
 
 Request URL: http://localhost:61429/api/bookings/search
 
+Can Search on the following items:
 
-Request Json: 
+FirstName, LastName,FlightNumber,BookingDate,DepartureCityCode,ArrivalCityCode , DepartureCityName ,ArrivalCityName,PNR 
+
+Request Json 1: 
 
 {
-	"PNR":"1573346",
+	"PNR":"732995",
 	"FirstName":"test 1",
 	"LastName":"jitu"
+}
+
+
+Request Json 2: 
+
+{
+	"PNR":"5454545454",
+	"FirstName":"test 1",
+	"LastName":"jitu"
+}
+
+
+Request Json 3: 
+
+{
+	"DepartureCityCode":"MEL",
+	"FirstName":"test34",
+	"LastName":"jitu"
+}
+
+Request Json 4: 
+
+{
+	"DepartureCityCode":"MEL3",
+	"FirstName":"test34",
+	"LastName":"jitu",
+	"BookingDate": "4/22/2018"
 }

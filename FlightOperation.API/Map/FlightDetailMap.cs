@@ -7,6 +7,9 @@ using System.Web;
 
 namespace FlightOperation.API.Map
 {
+    /// <summary>
+    /// Flight detail dapper mapping
+    /// </summary>
     public class FlightDetailMap : EntityMap<FlightDetail>
     {
         public FlightDetailMap()

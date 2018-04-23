@@ -15,12 +15,25 @@ namespace FlightOperation.API.Manager
         private IDbManager dbManager;
         private IFlightManager flightManager;
         private IPassengerManager passengerManager;
+
+        /// <summary>
+        /// BookingManager ctor
+        /// </summary>
+        /// <param name="dbManager"></param>
+        /// <param name="flightManager"></param>
+        /// <param name="passengerManager"></param>
         public BookingManager(IDbManager dbManager, IFlightManager flightManager, IPassengerManager passengerManager)
         {
             this.dbManager = dbManager;
             this.flightManager = flightManager;
             this.passengerManager = passengerManager;
         }
+
+        /// <summary>
+        /// Make Booking
+        /// </summary>
+        /// <param name="booking"></param>
+        /// <returns></returns>
         public async Task<Tuple<HttpStatusCode, string>> MakeBooking(CreateBookingRequestDeatils booking)
         {
             var flightDetails = await flightManager.GetFlightDetails(booking.FlightDetails);
@@ -50,6 +63,13 @@ namespace FlightOperation.API.Manager
                 return new Tuple<HttpStatusCode, string>(HttpStatusCode.BadRequest, "flight details not valid");
         }
 
+        /// <summary>
+        /// Update Booking
+        /// </summary>
+        /// <param name="pnr"></param>
+        /// <param name="flightDetails"></param>
+        /// <param name="passengerCount"></param>
+        /// <returns></returns>
         private async Task<bool> UpdateBooking(string pnr, FlightDetail flightDetails, int passengerCount)
         {
             var sql = @"
@@ -78,12 +98,17 @@ namespace FlightOperation.API.Manager
             }
         }
 
+        /// <summary>
+        /// Search Booking
+        /// </summary>
+        /// <param name="search"></param>
+        /// <returns></returns>
         public async Task<List<Booking>> SearchBooking(SearchBookingModel search)
         {
             var sql = @"SELECT * FROM [flightbooking].[dbo].[vwbookingdetails]
                         WHERE pnr = @pnr or firstname= @fname or lastname = @lname or flight_number = @fn
                         or departure_city_code = @dcc or arrival_city_code = @acc
-                        or departure_city_name = @dcn or arrival_city_name = @acn";
+                        or departure_city_name = @dcn or arrival_city_name = @acn or convert(date,booking_date)  = @bdate";
 
             using (var db = dbManager.GetOpenConnection())
             {
@@ -95,7 +120,8 @@ namespace FlightOperation.API.Manager
                     dcc = search.DepartureCityCode,
                     acc = search.ArrivalCityCode,
                     dcn = search.DepartureCityName,
-                    acn = search.ArrivalCityName
+                    acn = search.ArrivalCityName,
+                    bdate = search.BookingDate
                 } ));
                 if (results != null && results.Count() > 0)
                     return results.ToList();

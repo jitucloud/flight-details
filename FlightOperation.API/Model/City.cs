@@ -5,6 +5,9 @@ using System.Web;
 
 namespace FlightOperation.API.Model
 {
+    /// <summary>
+    /// City class
+    /// </summary>
     public class City
     {
         public string Code { get; set; }

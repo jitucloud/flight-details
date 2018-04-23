@@ -10,10 +10,21 @@ namespace FlightOperation.API.Manager
     public class PassengerManager : IPassengerManager
     {
         private IDbManager dbManager;
+
+        /// <summary>
+        /// PassengerManager ctor
+        /// </summary>
+        /// <param name="dbManager"></param>
         public PassengerManager(IDbManager dbManager)
         {
             this.dbManager = dbManager;
         }
+
+        /// <summary>
+        /// Create Passenger
+        /// </summary>
+        /// <param name="passenger"></param>
+        /// <returns></returns>
         public async Task<int> CreatePassenger(Passenger passenger)
         {
             var sql = @"INSERT INTO [flightbooking].[dbo].[passenger] (firstname,lastname)
@@ -33,6 +44,13 @@ namespace FlightOperation.API.Manager
                 return (await db.QueryAsync<int>(cmd)).FirstOrDefault();
             }
         }
+
+        /// <summary>
+        /// Update Passenger Booking Record
+        /// </summary>
+        /// <param name="passengerId"></param>
+        /// <param name="pnr"></param>
+        /// <returns></returns>
         public async Task<bool> UpdatePassengerBookingRecord(int passengerId, string pnr)
         {
             var sql = @"INSERT INTO [flightbooking].[dbo].[bookingrecord] 

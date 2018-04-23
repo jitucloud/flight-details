@@ -3,6 +3,9 @@ using FlightOperation.API.Model;
 
 namespace FlightOperation.API.Map
 {
+    /// <summary>
+    /// Booking Dapper mapping
+    /// </summary>
     public class BookingMap : EntityMap<Booking>
     {
         public BookingMap()
@@ -15,7 +18,8 @@ namespace FlightOperation.API.Map
             Map(a => a.ArrivalCityCode).ToColumn("arrival_city_code", caseSensitive: false);
             Map(a => a.FirstName).ToColumn("firstname", caseSensitive: false);
             Map(a => a.LastName).ToColumn("lastname", caseSensitive: false);
-
+            Map(a => a.BookingDate).ToColumn("booking_date", caseSensitive: false);
+            Map(a => a.Id).ToColumn("id", caseSensitive: false);
         }
     }
 }

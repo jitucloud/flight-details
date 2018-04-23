@@ -6,6 +6,9 @@ using System.Web;
 
 namespace FlightOperation.API.Map
 {
+    /// <summary>
+    /// Main dapper transformer class
+    /// </summary>
     public static class DapperTransformer
     {
         public static void Register()
