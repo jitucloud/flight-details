@@ -79,7 +79,8 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller\CatControllerTest.cs" />
+    <Compile Include="Controller\BookingControllerTest.cs" />
+    <Compile Include="Controller\FlightsControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

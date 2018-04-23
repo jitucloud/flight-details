@@ -87,7 +87,7 @@ namespace FlightOperation.API.Controllers
         {
 
             var flightList = await flightManager.CheckAvailbilityOfFlight(startDate, endDate, passengerCount);
-            if (flightList != null)
+            if (flightList != null && flightList.Count() > 0)
                 return Ok(flightList);
             else
                 return NotFound();

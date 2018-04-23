@@ -36,31 +36,43 @@ namespace FlightOperation.API.Manager
         /// <returns></returns>
         public async Task<Tuple<HttpStatusCode, string>> MakeBooking(CreateBookingRequestDeatils booking)
         {
-            var flightDetails = await flightManager.GetFlightDetails(booking.FlightDetails);
-            if (flightDetails != null && booking.Passenger != null && booking.Passenger.Count() > 0)
+            if (booking.FlightDetails != null && !String.IsNullOrEmpty(booking.FlightDetails.DepartureDate)
+                && !String.IsNullOrEmpty(booking.FlightDetails.ArrivalDate)
+                && !String.IsNullOrEmpty(booking.FlightDetails.DepartureCityCode)
+                && !String.IsNullOrEmpty(booking.FlightDetails.ArrivalCityCode)
+                && !String.IsNullOrEmpty(booking.FlightDetails.DepartureTime)
+                && !String.IsNullOrEmpty(booking.FlightDetails.ArrivalTime))
             {
-                var passengerCount = booking.Passenger.Count();
-                if (flightDetails.Capacity > booking.Passenger.Count())
+                var flightDetails = await flightManager.GetFlightDetails(booking.FlightDetails);
+                if (flightDetails != null && booking.Passenger != null && booking.Passenger.Count() > 0)
                 {
-                    var pnr = String.Format("{0:000000}", new Random().Next(000000, 999999));
-                    var status = await UpdateBooking(pnr, flightDetails, passengerCount);
-                    if (status)
+                    var passengerCount = booking.Passenger.Count();
+                    if (flightDetails.Capacity > booking.Passenger.Count())
                     {
-                        foreach (Passenger passenger in booking.Passenger)
+                        var pnr = String.Format("{0:000000}", new Random().Next(000000, 999999));
+                        var status = await UpdateBooking(pnr, flightDetails, passengerCount);
+                        if (status)
                         {
-                            var passengerId = await passengerManager.CreatePassenger(passenger);
-                            await passengerManager.UpdatePassengerBookingRecord(passengerId, pnr);
+                            foreach (Passenger passenger in booking.Passenger)
+                            {
+                                var passengerId = await passengerManager.CreatePassenger(passenger);
+                                await passengerManager.UpdatePassengerBookingRecord(passengerId, pnr);
+                            }
+                            return new Tuple<HttpStatusCode, string>(HttpStatusCode.OK, pnr);
                         }
-                        return new Tuple<HttpStatusCode, string>(HttpStatusCode.OK, pnr);
+                        else
+                            return new Tuple<HttpStatusCode, string>(HttpStatusCode.BadRequest, "something went wrong while creating booking");
                     }
                     else
-                        return new Tuple<HttpStatusCode, string>(HttpStatusCode.BadRequest, "something went wrong while creating booking");
+                        return new Tuple<HttpStatusCode, string>(HttpStatusCode.NotFound, "capacity exceeded");
                 }
                 else
-                    return new Tuple<HttpStatusCode, string>(HttpStatusCode.NotFound, "capacity exceeded");
+                    return new Tuple<HttpStatusCode, string>(HttpStatusCode.BadRequest, "flight details not valid");
             }
             else
-                return new Tuple<HttpStatusCode, string>(HttpStatusCode.BadRequest, "flight details not valid");
+            {
+                return new Tuple<HttpStatusCode, string>(HttpStatusCode.BadRequest, "Supplied flight details are not correct");
+            }
         }
 
         /// <summary>
@@ -112,7 +124,8 @@ namespace FlightOperation.API.Manager
 
             using (var db = dbManager.GetOpenConnection())
             {
-                var results = await db.QueryAsync<Booking>(new CommandDefinition(sql , new {
+                var results = await db.QueryAsync<Booking>(new CommandDefinition(sql, new
+                {
                     pnr = search.PNR,
                     fname = search.FirstName,
                     lname = search.LastName,
@@ -122,7 +135,7 @@ namespace FlightOperation.API.Manager
                     dcn = search.DepartureCityName,
                     acn = search.ArrivalCityName,
                     bdate = search.BookingDate
-                } ));
+                }));
                 if (results != null && results.Count() > 0)
                     return results.ToList();
                 else return null;
