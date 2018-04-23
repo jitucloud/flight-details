@@ -18,6 +18,10 @@ Request URL:  http://localhost:61429/api/flights?date=4/26/2018
 
 http://localhost:61429/api/flights/checkavailbility?startDate=4/23/2018&endDate=4/26/2018&passengerCount=2
 
+http://localhost:61429/api/flights/checkavailbility?startDate=4/23/2018&endDate=4/26/2018&passengerCount=22
+
+http://localhost:61429/api/flights/checkavailbility?startDate=4/23/2018&endDate=4/27/2018&passengerCount=18
+
 
 **Make A Booking : HttpPost**
 
